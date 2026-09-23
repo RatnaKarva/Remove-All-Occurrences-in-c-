@@ -1,0 +1,38 @@
+#include <iostream>
+#include <deque>
+#include <string>
+using namespace std;
+
+bool remove_occ(string s) {
+    deque<char> dq(s.begin(), s.end());
+
+    while (true) {
+        bool found = false;
+
+        for (int i = 0; i + 3 <= dq.size(); i++) {
+
+            string str(dq.begin() + i, dq.begin() + i + 3);
+
+            if (str == "abc") {
+                dq.erase(dq.begin() + i, dq.begin() + i + 3);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            break;
+        }
+    }
+
+    for (char i : dq) {
+        cout << i;
+    }
+
+    return true;
+}
+
+int main() {
+    string st = "daabcbcbaabcbc";
+    remove_occ(st);
+}
